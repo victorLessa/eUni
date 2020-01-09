@@ -1,10 +1,10 @@
 module.exports = {
   development: {
     dialect: 'postgres',
-    host: 'tuffi.db.elephantsql.com',
-    username: 'zalgovvb',
-    password: 'Hzy1d3GUnduNAPSarK1Fn91RF10a14Lo',
-    database: 'zalgovvb',
+    host: 'rajje.db.elephantsql.com',
+    username: 'lahbxdpi',
+    password: 'VV4uQNGVemiNV0aySJwPU1WvSvDle7Jv',
+    database: 'lahbxdpi',
     port: '5432',
     logging: false,
     define: {
@@ -22,10 +22,10 @@ module.exports = {
   },
   production: {
     dialect: 'postgres',
-    host: 'tuffi.db.elephantsql.com',
-    username: 'zalgovvb',
-    password: 'Hzy1d3GUnduNAPSarK1Fn91RF10a14Lo',
-    database: 'zalgovvb',
+    host: 'rajje.db.elephantsql.com',
+    username: 'lahbxdpi',
+    password: 'VV4uQNGVemiNV0aySJwPU1WvSvDle7Jv',
+    database: 'lahbxdpi',
     port: '5432',
     logging: false,
     define: {
