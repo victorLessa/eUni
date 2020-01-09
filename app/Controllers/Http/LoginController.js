@@ -1,30 +1,18 @@
 "use strict";
+const User = use('App/models/User')
+const Hash = use('Hash')
 
 class LoginController {
-  async redirect({ ally }) {
-    
-    await ally.driver("facebook").redirect();
-  }
-
-  async callback({ ally, auth }) {
+  async singIn({ auth, request, response }) {
     try {
-      const fbUser = await ally.driver("facebook").getUser();
+      let { email, password } = request.body
+      let { token } = await auth.attempt(email, password, { email, password })
 
-      // user details to be saved
-      const userDetails = {
-        email: fbUser.getEmail(),
-        token: fbUser.getAccessToken(),
-        login_source: "facebook"
-      };
-
-      // search for existing user
-      const whereClause = {
-        email: fbUser.getEmail()
-      };
-
-      return { userDetails, whereClause };
-    } catch (error) {
-      return error;
+      return response.send({ token })
+    } catch (err) {
+      if (err.message == "E_PASSWORD_MISMATCH: Cannot verify user password")
+        return response.status(404).send({ message: "Usuario não encontrado" })
+      response.status(500).send({ message: err.message, stack: err.stack })
     }
   }
 }
