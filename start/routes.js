@@ -21,5 +21,6 @@ Route.get("/", () => {
 });
 Route.get("login/facebook", "LoginController.redirect");
 Route.get("facebook/callback", "LoginController.callback");
-Route.post("signUp", "UserController.store");
+Route.post("signUp", "UserController.signUp");
+Route.post('signIn', "LoginController.singIn");
 Route.post("schedule", "CourseController.store");
