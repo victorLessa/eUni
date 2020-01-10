@@ -6,7 +6,19 @@ module.exports = {
     return queryInterface.createTable(tableName, { 
       id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      day_week: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'days_week',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       name: {
         type: Sequelize.STRING,
