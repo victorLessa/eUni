@@ -27,6 +27,20 @@ class EventController {
       next(err)
     }
   }
+
+  async delete(req, res, next) {
+    try {
+
+      const { user_id, params: { id } } = req
+
+      const event = await Event.destroy({ where: { id, user_id } })
+
+      if (event) return res.send({ message: "Evento apagado com sucesso!" })
+      return res.send({ message: "Evento não encontrado em seu registro!" })
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 module.exports = EventController
