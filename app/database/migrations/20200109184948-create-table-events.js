@@ -34,6 +34,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      hours: {
+        type: Sequelize.STRING
+      },
       description: {
         type: Sequelize.STRING,
       },

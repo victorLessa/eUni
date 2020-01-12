@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    hours: {
+      type: DataTypes.STRING
+    },
     day_week: {
       type: DataTypes.INTEGER
     },
