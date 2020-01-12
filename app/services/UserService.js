@@ -9,7 +9,7 @@ class UserService {
       where: { email },
       attributes: [
         'id',
-        'senha',
+        'password',
         ['created_at', 'data_criacao'],
         ['updated_at', 'data_atualizacao'],
         'ultimo_login',
@@ -17,14 +17,14 @@ class UserService {
     })
     return user
   }
-  async transactionUserCreate({ nome, email, senha, telefones }) {
+  async transactionUserCreate({ nome, email, password, telefones }) {
     return await this.sequelize.transaction().then(t => {
       return this.user
         .create(
           {
             nome,
             email,
-            senha,
+            password,
             ultimo_login: new Date(),
           },
           { transaction: t }

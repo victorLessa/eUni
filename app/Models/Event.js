@@ -1,10 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Events = sequelize.define('events', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
+  const Event = sequelize.define('Event', {
+    user_id: {
+      type: DataTypes.INTEGER
     },
     name: {
       type: DataTypes.STRING,
@@ -17,8 +15,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     } 
   }, {});
-  Events.associate = function(models) {
-    Events.belongsTo(models.days_week, { as: 'days_week' })
+  Event.associate = function(models) {
+    Event.belongsTo(models.days_week, { as: 'days_week' })
+    Event.belongsTo(models.User, { as: 'users' })
   };
-  return Events;
+  return Event;
 };

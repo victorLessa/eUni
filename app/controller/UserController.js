@@ -15,7 +15,7 @@ class UserController extends UserService {
   }
   async store(req, res, next) {
     try {
-      let { nome, email, senha, telefones } = req.body
+      let { nome, email, password, telefones } = req.body
 
       let user = await this.findUserByEmail({ email })
 
@@ -25,7 +25,7 @@ class UserController extends UserService {
           .send({ message: 'E-mail já existente', status: 401 })
       }
 
-      user = await this.transactionUserCreate({ nome, email, senha, telefones })
+      user = await this.transactionUserCreate({ nome, email, password, telefones })
 
       const token = await generateToken(user.id)
 
@@ -42,7 +42,7 @@ class UserController extends UserService {
   }
   async authenticate(req, res, next) {
     try {
-      let { email, senha } = req.body
+      let { email, password } = req.body
 
       let user = await this.findUserByEmail({ email })
 
@@ -52,7 +52,7 @@ class UserController extends UserService {
           .send({ message: 'Usuário e/ou senha inválidos', status: 401 })
       }
 
-      if (!(await hashCompare(senha, user.senha))) {
+      if (!(await hashCompare(password, user.password))) {
         return res
           .status(401)
           .send({ message: 'Usuário e/ou senha inválidos', status: 401 })
@@ -64,7 +64,7 @@ class UserController extends UserService {
         { ultimo_login: new Date() },
         { where: { id: user.id } }
       )
-      delete user.dataValues.senha
+      delete user.dataValues.password
 
       user.dataValues.ultimo_login = await timeZone(new Date())
 

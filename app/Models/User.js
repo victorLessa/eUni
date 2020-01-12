@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       nome: DataTypes.STRING,
       ultimo_login: DataTypes.DATE,
       email: DataTypes.STRING,
-      senha: DataTypes.STRING,
+      password: DataTypes.STRING,
     },
     {
       sequelize,
@@ -14,9 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   )
   User.associate = models => {
     User.hasMany(models.Phone, { foreignKey: 'user_id', as: 'phones' })
+    User.hasMany(models.Event, { foreignKey: 'user_id', as: 'events' })
   }
   User.beforeCreate(async (user, options) => {
-    return (user.senha = await bcrypt.hash(user.senha, 10))
+    return (user.password = await bcrypt.hash(user.password, 10))
   })
   return User
 }
