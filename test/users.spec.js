@@ -12,7 +12,7 @@ describe('Tests Users', () => {
     const body = {
       nome: 'Victor Camara Lessa',
       email: 'anonimoteste@gmail.com',
-      senha: '123',
+      password: '123',
       telefones: [
         {
           numero: '123456789',
@@ -41,7 +41,7 @@ describe('Tests Users', () => {
     const body = {
       nome: null,
       email: 'anonimoteste@gmail.com',
-      senha: '123',
+      password: '123',
       telefones: [
         {
           numero: '123456789',
@@ -65,7 +65,7 @@ describe('Tests Users', () => {
   it('If the email does not exist, return error with appropriate status plus "Invalid username and / or password" message', done => {
     const body = {
       email: 'anonimotestes@gmail.com',
-      senha: '111',
+      password: '111',
     }
 
     chai
@@ -85,7 +85,7 @@ describe('Tests Users', () => {
   it('If the email exists but the password does not match, return the appropriate status 401 plus the message "Invalid username and / or password', done => {
     const body = {
       email: 'anonimoteste@gmail.com',
-      senha: '122',
+      password: '122',
     }
 
     chai
