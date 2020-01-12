@@ -11,6 +11,22 @@ class EventController {
       next(err)
     }
   }
+
+  async edit(req, res, next) {
+    try {
+
+      const { id, ...body } = req.body
+
+      const { user_id } = req
+      const event = await Event.update(body, { where: { id, user_id } })
+
+      if (!event[0]) return res.status(401).send({ message: "Usuário não tem permissão para atualizar esse evento!" })
+      return res.send({ message: "Evento atualizado com sucesso!" })
+
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 module.exports = EventController
