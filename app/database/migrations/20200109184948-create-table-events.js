@@ -20,7 +20,7 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
-      day_week: {
+      day_week_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
