@@ -14,5 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {});
+  DayWeek.associate = models => {
+    DayWeek.belongsToMany(models.Event, { foreignKey: 'day_week_id', through: 'event_week' })
+  }
   return DayWeek;
 };
