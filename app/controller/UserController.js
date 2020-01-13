@@ -1,6 +1,6 @@
 'user strict'
 require('dotenv').config()
-const { sequelize, User, Phone } = require('../models/index')
+const { sequelize, User, Phone, Event } = require('../models/index')
 const UserService = require('../services/UserService')
 const {
   generateToken,
@@ -12,6 +12,20 @@ const { timeDifference, timeZone } = require('../utils/moment')
 class UserController extends UserService {
   constructor() {
     super(sequelize, User, Phone)
+  }
+  async index(req, res, next) {
+    try {
+
+      const { user_id: id } = req
+      const user = await User.findOne({
+        where: { id },
+        include: [{ association: 'phones' }, { association: 'events'}]
+      })
+
+      return res.send(user)
+    } catch (err) {
+      next(err)
+    }
   }
   async store(req, res, next) {
     try {
