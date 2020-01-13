@@ -20,16 +20,6 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
-      day_week_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'days_week',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,

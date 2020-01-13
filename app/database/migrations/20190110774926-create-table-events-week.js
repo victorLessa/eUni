@@ -1,6 +1,6 @@
 'use strict';
 
-const tableName = 'events_week'
+const tableName = 'event_weeks'
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable(tableName, { 
@@ -22,12 +22,20 @@ module.exports = {
       day_week_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'days_week',
+          model: 'day_weeks',
           id: 'id'
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
-      }
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
     });
     /*
       Add altering commands here.
@@ -38,12 +46,12 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable(tableName);
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
 
       Example:
-      return queryInterface.dropTable('users');
     */
   }
 };

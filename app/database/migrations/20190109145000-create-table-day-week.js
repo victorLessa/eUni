@@ -1,6 +1,6 @@
 'use strict';
 
-const tableName = "days_week"
+const tableName = "day_weeks"
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable(tableName, { 
@@ -13,6 +13,12 @@ module.exports = {
       name_day: {
         type: Sequelize.STRING(),
         allowNull: false,
+      },
+      created_at: {
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
       },
     });
   },
