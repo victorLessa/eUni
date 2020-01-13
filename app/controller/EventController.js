@@ -1,6 +1,17 @@
 const { Event } = require('../Models/index')
 
 class EventController {
+  async index(req, res, next) {
+    try {
+      const { user_id } = req
+
+      const events = await Event.find({where: { user_id }})
+
+      return res.send(events)
+    } catch (err) {
+      next(err)
+    }
+  }
   async store(req, res, next) {
     try {
       req.body.user_id = req.user_id
