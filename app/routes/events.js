@@ -5,6 +5,10 @@ const route = express.Router()
 let Event = require('../controller/EventController'),
   EventController = new Event()
 
+route.get('/events', (req, res, next) => {
+  EventController.index(req, res, next)
+})
+
 route.post('/events/create', (req, res, next) => {
   EventController.store(req, res, next)
 })
