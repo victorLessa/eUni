@@ -1,6 +1,6 @@
 'use strict';
 
-const tableName = "days_week"
+const tableName = "day_weeks"
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(tableName, [

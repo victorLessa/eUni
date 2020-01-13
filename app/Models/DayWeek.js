@@ -1,13 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const DayWeek = sequelize.define('days_week', {
+  const DayWeek = sequelize.define('DayWeek', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
     },
     name_day: {
       type: DataTypes.STRING,
@@ -15,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   DayWeek.associate = models => {
-    DayWeek.belongsToMany(models.Event, { foreignKey: 'day_week_id', through: 'event_week' })
+    DayWeek.belongsToMany(models.Event, { foreignKey: 'day_week_id', through: models.EventWeek })
   }
   return DayWeek;
 };

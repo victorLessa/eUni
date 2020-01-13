@@ -1,11 +1,15 @@
-const { Event } = require('../Models/index')
+const { sequelize, Event, EventWeek } = require('../Models/index')
+const EventService = require('../services/EventService')
 
-class EventController {
+class EventController extends EventService {
+  constructor() {
+    super(sequelize, Event, EventWeek)
+  }
   async index(req, res, next) {
     try {
       const { user_id } = req
 
-      const events = await Event.find({where: { user_id }})
+      const events = await Event.find({ where: { user_id } })
 
       return res.send(events)
     } catch (err) {
@@ -15,8 +19,8 @@ class EventController {
   async store(req, res, next) {
     try {
       req.body.user_id = req.user_id
-      const event = await Event.create(req.body)
-
+      
+      const event = await this.transactionEvent(req.body, next)
       return res.send(event)
     } catch (err) {
       next(err)

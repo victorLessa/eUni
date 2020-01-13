@@ -11,16 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     hours: {
       type: DataTypes.STRING
     },
-    day_week_id: {
-      type: DataTypes.INTEGER
-    },
     description: {
       type: DataTypes.STRING
     }
   }, {});
   Event.associate = function (models) {
-    Event.belongsToMany(models.Event_week, {
-      through: 'event_week',
+    Event.belongsToMany(models.DayWeek, {
+      through: models.EventWeek,
       foreignKey: 'event_id'
     })
     Event.belongsTo(models.User, { foreignKey: 'user_id', as: 'users' })
