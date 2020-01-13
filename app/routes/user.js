@@ -5,7 +5,11 @@ UserController = new UserController()
 const { sign_up_validate, sign_in_validate } = require('../validation/index')
 
 router.get('/', (req, res) => {
-  return res.send({ message: 'Bem Vindo', status: 200 })
+  return res.send({ message: 'Bem Vindo, cuidado com minha API :)', status: 200 })
+})
+
+router.get('/user/details', (req, res, next) => {
+  UserController.index(req, res, next)
 })
 
 router.post('/signUp', sign_up_validate, (req, res, next) =>
