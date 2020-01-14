@@ -8,7 +8,7 @@
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "nodemon app/serve",
     "pretest": "yarn sequelize db:migrate",
-    "test": "mocha --exit",
+    "test": "mocha --timeout 50000 --exit",
     "posttest": "yarn sequelize db:migrate:undo:all"
   },
   "repository": {

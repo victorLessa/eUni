@@ -29,33 +29,27 @@ class UserService {
           },
           { transaction: t }
         )
-        .then(async user => {
-          for (let statement of telefones) {
+        .then(async ({ id }) => {
+          for(let statement of telefones) {
             await this.phone.create(
               {
-                user_id: user.id,
+                user_id: id,
                 numero: statement.numero,
                 ddd: statement.ddd,
               },
               { transaction: t }
             )
           }
+          return { id }
         })
-        .then(async () => {
+        .then(async (user) => {
           await t.commit()
-          return await this.user.findOne({
-            where: { email },
-            attributes: [
-              'id',
-              ['created_at', 'data_criacao'],
-              ['updated_at', 'data_atualizacao'],
-              'ultimo_login',
-            ],
-          })
+          return user
         })
         .catch(err => {
           t.rollback()
-          throw new Error(err)
+          return err
+          // throw new Error(err)
         })
     })
   }

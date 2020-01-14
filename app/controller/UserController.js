@@ -19,7 +19,7 @@ class UserController extends UserService {
       const { user_id: id } = req
       const user = await User.findOne({
         where: { id },
-        include: [{ association: 'phones' }, { association: 'events'}]
+        include: [{ association: 'phones' }, { association: 'events' }]
       })
 
       return res.send(user)
@@ -43,13 +43,8 @@ class UserController extends UserService {
 
       const token = await generateToken(user.id)
 
-      user.dataValues.token = token
-
-      user.dataValues.ultimo_login = await timeZone(
-        user.dataValues.ultimo_login
-      )
-
-      return res.send(user.dataValues)
+      user.token = token
+      return res.send(user)
     } catch (err) {
       return next(err)
     }
