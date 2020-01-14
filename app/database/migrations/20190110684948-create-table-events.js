@@ -24,6 +24,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      date: {
+        type: Sequelize.STRING(10),
+      },
       hours: {
         type: Sequelize.STRING
       },
