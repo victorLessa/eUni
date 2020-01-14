@@ -13,7 +13,7 @@ route.post('/events/create', (req, res, next) => {
   EventController.store(req, res, next)
 })
 
-route.patch('/event/update', (req, res, next) => {
+route.patch('/event/update/:id', (req, res, next) => {
   EventController.edit(req, res, next)
 })
 

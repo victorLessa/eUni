@@ -30,7 +30,8 @@ class EventController extends EventService {
   async edit(req, res, next) {
     try {
 
-      const { id, ...body } = req.body
+      const { id } = req.params
+      const body = req.body
 
       const { user_id } = req
       const event = await Event.update(body, { where: { id, user_id } })
