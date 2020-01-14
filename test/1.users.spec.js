@@ -5,7 +5,7 @@ const chaitHttp = require('chai-http')
 const should = chai.should()
 chai.use(chaitHttp)
 
-describe('Tests Users', () => {
+describe('_Tests Users', () => {
   let user_id
   let token
   it('Register sucess', done => {
