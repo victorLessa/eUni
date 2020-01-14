@@ -29,8 +29,6 @@ describe('Tests Users', () => {
         if (err) return done(err)
         res.should.have.status(200)
         res.body.should.have.property('id')
-        res.body.should.have.property('data_criacao')
-        res.body.should.have.property('data_atualizacao')
         res.body.should.have.property('token')
         user_id = res.body.id
         token = res.body.token
