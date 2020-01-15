@@ -8,15 +8,15 @@ const joi = (req, res, next) => {
     password: Joi.string().required(),
   })
 
-  const value = schema.validate({
+  const valid = schema.validate({
     email,
     password,
   })
 
-  if (value.hasOwnProperty('error'))
+  if (valid.hasOwnProperty('error'))
     return res
       .status(401)
-      .send({ message: value.error.details[0].message, status: 401 })
+      .send({ message: valid.error.details, status: 401 })
   next()
 }
 

@@ -10,17 +10,17 @@ const joi = (req, res, next) => {
     telefones: Joi.array().required(),
   })
 
-  const value = schema.validate({
+  const valid = schema.validate({
     nome,
     email,
     password,
     telefones,
   })
 
-  if (value.hasOwnProperty('error'))
+  if (valid.hasOwnProperty('error'))
     return res
       .status(401)
-      .send({ message: value.error.details[0].message, status: 401 })
+      .send({ message: valid.error.details, status: 401 })
   next()
 }
 
