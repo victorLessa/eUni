@@ -17,12 +17,12 @@ class UserService {
     })
     return user
   }
-  async transactionUserCreate({ nome, email, password, telefones }) {
+  async transactionUserCreate({ name, email, password, phones }) {
     return await this.sequelize.transaction().then(t => {
       return this.user
         .create(
           {
-            nome,
+            name,
             email,
             password,
             ultimo_login: new Date(),
@@ -30,11 +30,11 @@ class UserService {
           { transaction: t }
         )
         .then(async ({ id }) => {
-          for(let statement of telefones) {
+          for(let statement of phones) {
             await this.phone.create(
               {
                 user_id: id,
-                numero: statement.numero,
+                number: statement.number,
                 ddd: statement.ddd,
               },
               { transaction: t }
@@ -58,7 +58,7 @@ class UserService {
       include: { association: 'phones' },
       attributes: [
         'id',
-        'nome',
+        'name',
         'email',
         ['created_at', 'data_criacao'],
         ['updated_at', 'data_atualizacao'],

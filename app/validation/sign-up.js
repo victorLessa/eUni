@@ -1,20 +1,20 @@
 const Joi = require('@hapi/joi')
 
 const joi = (req, res, next) => {
-  let { nome, email, password, telefones } = req.body
+  let { name, email, password, phones } = req.body
 
   const schema = Joi.object({
-    nome: Joi.string().required(),
+    name: Joi.string().required(),
     email: Joi.string().required(),
     password: Joi.string().required(),
-    telefones: Joi.array().required(),
+    phones: Joi.array().required(),
   })
 
   const valid = schema.validate({
-    nome,
+    name,
     email,
     password,
-    telefones,
+    phones,
   })
 
   if (valid.hasOwnProperty('error'))

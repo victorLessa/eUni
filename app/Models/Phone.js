@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Phone = sequelize.define(
     'Phone',
     {
-      numero: DataTypes.STRING,
+      number: DataTypes.STRING,
       ddd: DataTypes.STRING,
     },
     {

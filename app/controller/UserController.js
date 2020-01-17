@@ -29,7 +29,7 @@ class UserController extends UserService {
   }
   async store(req, res, next) {
     try {
-      let { nome, email, password, telefones } = req.body
+      let { name, email, password, phones } = req.body
 
       let user = await this.findUserByEmail({ email })
 
@@ -39,7 +39,7 @@ class UserController extends UserService {
           .send({ message: 'E-mail já existente', status: 401 })
       }
 
-      user = await this.transactionUserCreate({ nome, email, password, telefones })
+      user = await this.transactionUserCreate({ name, email, password, phones })
 
       const token = await generateToken(user.id)
 

@@ -53,12 +53,12 @@ router.post('/signUp', sign_up_validate, (req, res, next) =>
 
 ```json
 {
-  "nome": "Concrete",
+  "name": "Concrete",
   "email": "concrete@gmail.com",
   "senha": "123",
-  "telefones": [
+  "phones": [
     {
-      "numero": "965844936",
+      "number": "965844936",
       "ddd": "21"
     }
   ]
@@ -135,7 +135,7 @@ header: {
 ```json
 {
   "id": 1,
-  "nome": "Concrete",
+  "name": "Concrete",
   "email": "concrete@gmail.com",
   "data_criacao": "2019-11-11T15:50:24.822Z",
   "data_atualizacao": "2019-11-11T21:37:13.440Z",

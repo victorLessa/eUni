@@ -10,12 +10,12 @@ describe('_Tests Users', () => {
   let token
   it('Register sucess', done => {
     const body = {
-      nome: 'Victor Camara Lessa',
+      name: 'Victor Camara Lessa',
       email: 'anonimoteste@gmail.com',
       password: '123',
-      telefones: [
+      phones: [
         {
-          numero: '123456789',
+          number: '123456789',
           ddd: '11',
         },
       ],
@@ -37,12 +37,12 @@ describe('_Tests Users', () => {
   })
   it('Register with validation error', done => {
     const body = {
-      nome: null,
+      name: null,
       email: 'anonimoteste@gmail.com',
       password: '123',
-      telefones: [
+      phones: [
         {
-          numero: '123456789',
+          number: '123456789',
           ddd: '11',
         },
       ],
@@ -109,7 +109,7 @@ describe('_Tests Users', () => {
         if (err) return done(err)
         res.should.have.status(200)
         res.body.should.have.property('id')
-        res.body.should.have.property('nome')
+        res.body.should.have.property('name')
         res.body.should.have.property('email')
         res.body.should.have.property('data_criacao')
         res.body.should.have.property('data_atualizacao')
