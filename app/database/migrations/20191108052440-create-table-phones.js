@@ -21,7 +21,7 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       },
-      numero: {
+      number: {
         type: Sequelize.STRING,
         allowNull: false,
       },
