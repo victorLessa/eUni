@@ -1,4 +1,4 @@
-const { Phone } = require('../models/index')
+const { Phone } = require('../Models/index')
 
 class PhoneController {
   async index(req, res, next) {

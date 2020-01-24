@@ -1,6 +1,6 @@
 'user strict'
 require('dotenv').config()
-const { sequelize, User, Phone, Event } = require('../models/index')
+const { sequelize, User, Phone, Event } = require('../Models/index')
 const UserService = require('../services/UserService')
 const {
   generateToken,
