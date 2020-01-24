@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "yarn sequelize db:migrate",
+    "prestart": "npm sequelize db:migrate",
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "nodemon app/serve",
-    "pretest": "yarn sequelize db:migrate & yarn sequelize db:seed:all",
+    "pretest": "npm sequelize db:migrate & yarn sequelize db:seed:all",
     "test": "mocha --timeout 50000 --exit",
-    "posttest": "yarn sequelize db:migrate:undo:all"
+    "posttest": "npm sequelize db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
